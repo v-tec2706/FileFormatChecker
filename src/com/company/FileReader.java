@@ -1,7 +1,8 @@
 package com.company;
 
+import com.company.exceptions.FileReadingError;
+
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class FileReader {
@@ -12,12 +13,21 @@ public class FileReader {
 
         try {
             FileInputStream fileInputStream = new FileInputStream(filePath);
-            fileInputStream.read(readBytes, offset, n);
-            // TODO check number of read bytes and raise exception if 0
-        } catch (IOException e) {
-            e.printStackTrace();
+            if (fileInputStream.read(readBytes, offset, n) < 1) {
+                throw new FileReadingError();
+            }
+        } catch (IOException ignored) {
+            throw new FileReadingError();
         }
 
         return readBytes;
+    }
+
+    public String extractFileExtension(String fileName) {
+        try {
+            return fileName.split(".")[1];
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
     }
 }
