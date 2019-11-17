@@ -21,6 +21,7 @@ public class FormatChecker {
             FileFormat expectedFileFormat = fileFormats.get(expectedExtension);
             hexSignature = fileReader.readBytesFromFile(fileName, expectedFileFormat.getOffset(), expectedFileFormat.getHexSignature().length);
             if (Arrays.equals(hexSignature, expectedFileFormat.getHexSignature())) {
+                return;
             } else {
                 hexSignature = fileReader.readBytesFromFile(fileName, 0, maxBytesToRead);
                 int firstIndex;
@@ -37,6 +38,7 @@ public class FormatChecker {
                 throw new FileExtensionNotKnown(expectedExtension);
             }
         }
+        throw new FileExtensionNotKnown(expectedExtension);
     }
 }
 

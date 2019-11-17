@@ -25,7 +25,8 @@ public class Main {
                     ", but actual extension was not recognized");
             return;
         } catch (FileReadingError ignore) {
-            System.out.println("Error occurred while reading from file");
+            System.out.println("Error occurred while reading from file.");
+            return;
         }
 
         System.out.println("File format is as expected.");

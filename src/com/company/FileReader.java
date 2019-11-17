@@ -25,7 +25,14 @@ public class FileReader {
 
     public String extractFileExtension(String fileName) {
         try {
-            return fileName.split(".")[1];
+            String[] path = fileName.split("\\."); // in case if file name is like follow './file.txt' or '/path/file.txt'
+            if (path.length == 2) {
+                return path[1];
+            }
+            if (path.length == 3) {
+                return path[2];
+            }
+            return null;
         } catch (IndexOutOfBoundsException e) {
             return null;
         }
