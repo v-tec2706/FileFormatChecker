@@ -41,7 +41,6 @@ public class FormatChecker {
                         throw new FileExtensionDifferentFromExpected(expectedExtension, fileFormatEntry.getKey());
                     }
                 }
-                throw new FileExtensionNotKnown(expectedExtension);
             }
         }
         throw new FileExtensionNotKnown(expectedExtension);
